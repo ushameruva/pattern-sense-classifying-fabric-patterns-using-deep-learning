@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Prediction Result</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+      padding-top: 80px;
+    }
+    nav {
+  background-color: #0b2c40;
+  padding: 15px 40px;              /* adjust as needed */
+  display: flex;
+  justify-content: space-between;  /* keep this for left/right separation */
+  align-items: center;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;          /* ensures padding doesn’t break layout */
+}
+
+    .logo {
+      font-size: 28px;
+      font-weight: 300;
+    }
+    .nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 25px;
+  margin-left: auto;       /* ensures nav-links stay at far right */
+}
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #a8d0e6;
+    }
+    main {
+      margin-top: 100px;
+      padding: 20px;
+    }
+    img {
+  display: block;
+  margin: 0 auto 30px auto;
+  width: auto;                /* Let browser calculate width */
+  max-width: 300px;           /* Never exceed 300px wide */
+  max-height: 300px;          /* Limit height too */
+  object-fit: contain;        /* Ensure entire image fits without cropping */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+    .prediction-text {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+    .btn-custom {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 28px;
+      font-size: 1em;
+      color: white;
+      background-color: #0b2c40;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .btn-custom:hover {
+      background-color: #06456f;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">PATTERN SENSE</div>
+    <div class="nav-links">
+      <a href="{{ url_for('home') }}">HOME</a>
+      <a href="{{ url_for('about') }}">ABOUT</a>
+      <a href="{{ url_for('contact') }}">CONTACT</a>
+      <a href="{{ url_for('classify') }}">GET STARTED</a>
+    </div>
+  </nav>
+
+  <main>
+  <h1>Image Classification</h1>
+  <img src="{{ url_for('static', filename='uploads/' + image_file) }}" alt="Uploaded Pattern Image">
+  <div class="prediction-text">
+    The Pattern is: <em>{{ label }}</em>
+  </div>
+  <div>
+    <a href="{{ url_for('classify') }}" class="btn-custom">Try with another image!</a>
+  </div>
+</main>
+
+
+</body>
+</html>
